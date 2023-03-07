@@ -1,5 +1,4 @@
 import React, { useState, useContext } from "react";
-import ReactDOM from "react-dom/client";
 
 function SignUpForm() {
   return (
@@ -29,9 +28,9 @@ function SignUpForm() {
       </button>
       <br/>
       <label>Already registered? </label>
-      <Route >
+
       <a href="#"style={{color:"rgb(87, 111, 114)",textDecoration:"none"}}> Login</a>
-      </Route>
+
       
     </div>
   );
