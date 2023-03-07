@@ -24,7 +24,7 @@ class ProfileBtn extends Component {
           <ul class="navbar-nav">
             <li class="nav-item dropdown">
               <button
-                class="btn navCart"
+                class="btn navCart iconClr"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >

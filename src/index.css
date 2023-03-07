@@ -1,10 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
 
+body {
+    font-family: "Poppins", sans-serif;
+    color: #444444;
+}
 .topbar{
-    color: white;
+    color: rgb(228, 220, 207);
 }
 
 .navBackground{
-    background-color: darkgray;
+    background-color: rgb(87, 111, 114);
 }
 .navCart{
     background-color: darkgray;
@@ -15,10 +20,33 @@
     width: 18 rem;
 }
 .cardItem{
-    display: inline-block;
-    background-color: white;
+    background-color: rgb(228, 220, 207);
+}
+
+.iconClr{
+    color: rgb(228, 220, 207);
+    background-color: transparent;
 }
 
 .navbar-nav{
     overflow: visible;
+}
+
+.loginContainer{
+    max-width: 600px;
+    min-height: calc(100vh - 250px);
+    border-radius: 15%;
+    border-style:solid;
+    box-shadow: 5px 5px rgb(240, 235, 227);
+
+    border-width: 2px;
+    border-color: rgb(87, 111, 114);
+    align-content: center;
+}
+
+.submitBtn{
+    background-color: rgb(87, 111, 114);
+    color: rgb(240, 235, 227);
+    margin-top: 10px;
+
 }

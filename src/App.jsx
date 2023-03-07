@@ -1,12 +1,14 @@
 import React,{ Component } from "react";
-import IdCards from "./IdCards";
+
 import Topbar from "./navbar";
+import LoginScreen from "./LoginScreen";
 
 class App extends Component{
     render(){
         return <React.Fragment>
             <Topbar/>
-            <IdCards />
+            {/* <IdCards /> */}
+            <LoginScreen/>
         </React.Fragment>;
     }
 }

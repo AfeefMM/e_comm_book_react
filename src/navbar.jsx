@@ -1,8 +1,8 @@
 import { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "react-bootstrap/Navbar";
-import Cart from "./Cart";
-import ProfileBtn from "./ProfileBtn";
+import Cart from "./Dropdowns/Cart";
+import ProfileBtn from "./Dropdowns/ProfileBtn";
 
 class Topbar extends Component {
   render() {

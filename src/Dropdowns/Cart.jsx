@@ -24,20 +24,20 @@ class Cart extends Component {
           <ul class="navbar-nav">
             <li class="nav-item dropdown">
               <button
-                class="btn navCart dropdown-toggle"
+                class="btn navCart dropdown-toggle iconClr"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
                 <i class="bi bi-basket2-fill"></i>
               </button>
 
-              <ul class="dropdown-menu">
+              <ul class="dropdown-menu cardItem">
                 
                 <li>
                   <a class="dropdown-item" href="#">
                     Action
                     <button class="btn ">
-                    <i class="bi bi-trash3-fill" style={{color:"red"}}></i>
+                    <i class="bi bi-trash3-fill" style={{color:"rgb(255, 3, 3)"}}></i>
                   </button>
                   </a>
                   

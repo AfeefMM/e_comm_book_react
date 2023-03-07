@@ -2,7 +2,7 @@ import { Component } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import ID from "./Id";
-import Cart from "./Cart";
+import Cart from "./Dropdowns/Cart";
 var columnsPerRow = 4;
 class IdCards extends Component {
   render() {
