@@ -13,14 +13,14 @@ class Topbar extends Component {
             <a className="navbar-brand topbar" href="#">
               Book Store
             </a>
-            <form class="d-flex ms-auto" role="search">
+            <form className="d-flex ms-auto" role="search">
               <input
-                class="form-control me-2"
+                className="form-control me-2"
                 type="search"
                 placeholder="Search"
                 aria-label="Search"
               />
-              <button class="btn btn-outline-light" type="submit">
+              <button className="btn btn-outline-light" type="submit">
                 Search
               </button>
             </form>

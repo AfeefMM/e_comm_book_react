@@ -29,7 +29,11 @@ function App() {
           <Route path="/signup" exact element={<SignUpForm />} />
           <Route path="/list" exact element={<IdCards />} />
           <Route path="/verify-email" exact element={<VerifyEmail/>} />
-          <PrivateRoute path="/profile" exact element={<Profile/>} />
+          <Route exact path='/profile' element={
+            <PrivateRoute>
+              <Profile/>
+            </PrivateRoute>
+          }/>
         </Routes>
         
         {/* <IdCards /> */}
