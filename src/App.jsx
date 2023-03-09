@@ -7,6 +7,7 @@ import Topbar from "./navbar";
 import IdCards from "./IdCards";
 import LoginForm from "./Login/LoginForm";
 import SignUpForm from "./Login/SignUpForm";
+import VerifyEmail from "./Login/VerifyEmail";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -17,16 +18,18 @@ function App() {
   }, [])
   return (
     <BrowserRouter>
+    <Topbar />
       <AuthProvider value={{ currentUser }}>
         <Routes>
-          <Route path="/" exact component={<LoginForm />} />
-          <Route path="/login" exact component={<LoginForm />} />
-          <Route path="/signup" exact component={<SignUpForm />} />
-          <Route path="/list" exact component={<IdCards />} />
+          <Route path="/" exact element={<LoginForm />} />
+          <Route path="/login" exact element={<LoginForm />} />
+          <Route path="/signup" exact element={<SignUpForm />} />
+          <Route path="/list" exact element={<IdCards />} />
+          <Route path="/verify-email" exact element={<VerifyEmail/>} />
         </Routes>
-        <Topbar />
+        
         {/* <IdCards /> */}
-        <SignUpForm />
+        {/* <SignUpForm /> */}
       </AuthProvider>
     </BrowserRouter>
   );

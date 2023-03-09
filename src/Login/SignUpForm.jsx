@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import { auth } from "../firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword,sendEmailVerification } from "firebase/auth";
 import { useForm } from "react-hook-form";
 
 function SignUpForm() {
@@ -17,7 +17,7 @@ function SignUpForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  //const { setError} = useForm();
+  const navigate = useNavigate();
   const [error, setError] = useState("");
 
   const register = (e) => {
@@ -26,6 +26,12 @@ function SignUpForm() {
     if (validatePassword()) {
       // Create a new user with email and password using firebase
       createUserWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        sendEmailVerification(auth.currentUser)
+        .then(() => {
+          navigate('/verify-email')
+        }).catch((err) => alert(err.message))
+      })
         .then((res) => {
           console.log(res.user);
         })
