@@ -8,6 +8,7 @@ import IdCards from "./IdCards";
 import LoginForm from "./Login/LoginForm";
 import SignUpForm from "./Login/SignUpForm";
 import VerifyEmail from "./Login/VerifyEmail";
+import PrivateRoute from "./PrivateRoute";
 
 import Profile from "./Login/Profile";
 
@@ -28,7 +29,7 @@ function App() {
           <Route path="/signup" exact element={<SignUpForm />} />
           <Route path="/list" exact element={<IdCards />} />
           <Route path="/verify-email" exact element={<VerifyEmail/>} />
-          <Route path="/profile" exact element={<Profile/>} />
+          <PrivateRoute path="/profile" exact element={<Profile/>} />
         </Routes>
         
         {/* <IdCards /> */}
