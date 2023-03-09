@@ -8,9 +8,9 @@ class Cart extends Component {
   //values to get: item name and price
   render() {
     return (
-      <div class="btn-group dropstart">
+      <div className="btn-group dropstart">
         <button
-          class="navbar-toggler dropstart"
+          className="navbar-toggler dropstart"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarNavDarkDropdown"
@@ -18,42 +18,41 @@ class Cart extends Component {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
-          <ul class="navbar-nav">
-            <li class="nav-item dropdown">
+        <div className="collapse navbar-collapse" id="navbarNavDarkDropdown">
+          <ul className="navbar-nav">
+            <li className="nav-item dropdown">
               <button
-                class="btn navCart dropdown-toggle iconClr"
+                className="btn navCart dropdown-toggle iconClr"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                <i class="bi bi-basket2-fill"></i>
+                <i className="bi bi-basket2-fill"></i>
               </button>
 
-              <ul class="dropdown-menu cardItem">
-                
+              <ul className="dropdown-menu cardItem">
                 <li>
-                  <a class="dropdown-item" href="#">
+                  <a className="dropdown-item" href="#">
                     Action
-                    <button class="btn ">
-                    <i class="bi bi-trash3-fill" style={{color:"rgb(255, 3, 3)"}}></i>
-                  </button>
+                    <button className="btn ">
+                      <i
+                        className="bi bi-trash3-fill"
+                        style={{ color: "rgb(255, 3, 3)" }}
+                      ></i>
+                    </button>
                   </a>
-                  
                 </li>
                 <li>
-                  <a class="dropdown-item" href="#">
+                  <a className="dropdown-item" href="#">
                     Another action
                   </a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="#">
+                  <a className="dropdown-item" href="#">
                     Something else here
                   </a>
                 </li>
-                
-                
               </ul>
             </li>
           </ul>

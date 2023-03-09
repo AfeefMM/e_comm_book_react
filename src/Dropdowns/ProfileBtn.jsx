@@ -2,11 +2,18 @@ import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.js";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import { useAuthValue } from "../AuthContext";
+import { auth } from "../firebase";
+import { signOut } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
-class ProfileBtn extends Component {
+function ProfileBtn() {
+
+ const { currentUser } = useAuthValue();
+const navigate = useNavigate()
   //call this in TopBar
   //values to get: item name and price
-  render() {
+ 
     return (
       <div class="btn-group dropstart">
         <button
@@ -24,7 +31,7 @@ class ProfileBtn extends Component {
           <ul class="navbar-nav">
             <li class="nav-item dropdown">
               <button
-                class="btn navCart iconClr"
+                class="btn navCart  iconClr"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
@@ -34,13 +41,14 @@ class ProfileBtn extends Component {
               <ul class="dropdown-menu">
                 
                 <li>
-                  <a class="dropdown-item" href="#">
+                  <a class="dropdown-item" onClick={() => navigate("/profile")}>
                     Profile
+
                   </a>
                   
                 </li>
                 <li>
-                  <a class="dropdown-item" href="#">
+                  <a class="dropdown-item" onClick={() => signOut(auth)}>
                     Log out
                   </a>
                 </li>
@@ -57,7 +65,7 @@ class ProfileBtn extends Component {
         </div>
       </div>
     );
-  }
+
 }
 
 export default ProfileBtn;

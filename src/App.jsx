@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useContext } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./AuthContext";
 import { auth } from "./firebase";
@@ -9,8 +9,10 @@ import LoginForm from "./Login/LoginForm";
 import SignUpForm from "./Login/SignUpForm";
 import VerifyEmail from "./Login/VerifyEmail";
 import PrivateRoute from "./PrivateRoute";
+import { useAuthValue } from "./AuthContext";
 
 import Profile from "./Login/Profile";
+import NotAuthTopbar from "./NotAuthNavBar";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -19,10 +21,14 @@ function App() {
       setCurrentUser(user)
      })
   }, [])
+  const {isAuthenticated} = useAuthValue()
   return (
     <BrowserRouter>
-    <Topbar />
+    
       <AuthProvider value={{ currentUser }}>
+      
+      {/* {isAuthenticated?<Topbar />:<NotAuthTopbar/>} */}
+      <Topbar />
         <Routes>
           <Route path="/" exact element={<LoginForm />} />
           <Route path="/login" exact element={<LoginForm />} />

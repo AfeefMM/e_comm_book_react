@@ -3,6 +3,8 @@ import { Link,useNavigate } from "react-router-dom";
 import {signInWithEmailAndPassword, sendEmailVerification} from 'firebase/auth'
 import { auth } from "../firebase";
 import { useAuthValue } from "../AuthContext";
+import Topbar from "../navbar";
+import NotAuthTopbar from "../NotAuthNavBar";
 
 
 
@@ -33,6 +35,7 @@ function LoginForm() {
   }
 
   return (
+    <div>
     <div className="container loginContainer">
       <h1 className="py-5" style={{ textAlign: "center" }}>
         Login
@@ -85,6 +88,7 @@ function LoginForm() {
         </p>
       
       
+    </div>
     </div>
   );
 }
