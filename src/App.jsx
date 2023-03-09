@@ -9,6 +9,8 @@ import LoginForm from "./Login/LoginForm";
 import SignUpForm from "./Login/SignUpForm";
 import VerifyEmail from "./Login/VerifyEmail";
 
+import Profile from "./Login/Profile";
+
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
   useEffect(() => {
@@ -26,6 +28,7 @@ function App() {
           <Route path="/signup" exact element={<SignUpForm />} />
           <Route path="/list" exact element={<IdCards />} />
           <Route path="/verify-email" exact element={<VerifyEmail/>} />
+          <Route path="/profile" exact element={<Profile/>} />
         </Routes>
         
         {/* <IdCards /> */}
