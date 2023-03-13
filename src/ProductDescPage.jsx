@@ -4,23 +4,33 @@ import ProductPrice from "./DescriptionPage/ProductPrice";
 import StarRating from "./DescriptionPage/StarRating";
 import ProductQuantity from "./Dropdowns/ProductQuantity";
 import AddCartBtn from "./DescriptionPage/AddToCartBtn";
+import ProductTypeCard from "./DescriptionPage/ProductTypeCard";
+import ProdTypeGroup from "./DescriptionPage/ProdTypeGroup";
 
-function ProductDescPage(){
-
-    return(
-        <div>
-            <div className="row flex-lg-row-reverse align-items-center g-5 py-5">
+function ProductDescPage() {
+  return (
+    <div>
+      <div className="row flex-lg-row-reverse align-items-center g-5 py-5">
         <div className="col-lg-6 ">
-          <ProductTitle/>
-          <ProductPrice/>
-          <StarRating/>
-          <ProductDesc/>
-          <ProductQuantity/>
-          <div className="d-grid gap-2 d-md-flex justify-content-md-start">
+          <ProductTitle />
+          <ProductPrice />
+          <StarRating />
+          <ProductDesc />
+          <ProductQuantity />
+            <ProdTypeGroup/>
+          {/* <div class="float-container">
+            <div class="float-child">
+            <ProductTypeCard />
+            </div>
 
-            
-            <AddCartBtn/>
-            
+            <div class="float-child">
+            <ProductTypeCard />
+            </div>
+          </div> */}
+
+
+          <div className="d-grid gap-2 d-md-flex justify-content-md-start">
+            <AddCartBtn />
           </div>
         </div>
         <div className="col-10 col-sm-8 col-lg-6">
@@ -34,8 +44,8 @@ function ProductDescPage(){
           />
         </div>
       </div>
-        </div>
-    );
+    </div>
+  );
 }
 
 export default ProductDescPage;

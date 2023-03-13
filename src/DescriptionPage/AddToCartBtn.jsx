@@ -4,7 +4,7 @@ function AddCartBtn(){
 
     return(
         <div>
-            <button>Add to Cart</button>
+            <button type="button "className="btn addCartBtn">Add to Cart</button>
         </div>
     );
 }

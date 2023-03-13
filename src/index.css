@@ -3,6 +3,7 @@
 body {
     font-family: "Poppins", sans-serif;
     color: #444444;
+    background-color: rgb(233, 233, 233);
 }
 .topbar{
     color: rgb(228, 220, 207);
@@ -84,9 +85,12 @@ body {
 }
 
 
-body{
-    /* background-color: #F0EBE3; */
-    
+.addCartBtn{
+    background-color: rgb(87, 111, 114);
+    color: #E4DCCF;
+    margin: 1em 1em 1em 1em;
+
+    border-radius: 10px;
 }
 
 .profileCardRow{

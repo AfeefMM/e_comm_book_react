@@ -23,8 +23,10 @@ function ProductQuantity(){
       <div className="btn__container">
 
       <span className="counter__output" style={{padding:"10px"}}> Quantity: {counter}</span>
-      <i class="bi bi-plus" onClick={increase}></i>
-      <i class="bi bi-dash" onClick={decrease}></i>
+      <button className="btn"> <i class="bi bi-plus" onClick={increase}></i></button>
+      <button className="btn"> <i class="bi bi-dash" onClick={decrease}></i></button>
+     
+      
 
       </div>
     </div>
