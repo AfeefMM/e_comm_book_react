@@ -8,9 +8,9 @@ class IdCards extends Component {
   render() {
     return (
       <div>
-        <h3 className="display-6 p-2">IDs</h3>
+
         <div className="gap-0 row-gap-3">
-          <Row xs={1} md={columnsPerRow}>
+          <Row xs={1} md={columnsPerRow} className="pt-2">
             {this.state.ids.map((i) => {
               return (
                 <Col>

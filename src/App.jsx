@@ -9,10 +9,12 @@ import LoginForm from "./Login/LoginForm";
 import SignUpForm from "./Login/SignUpForm";
 import VerifyEmail from "./Login/VerifyEmail";
 import PrivateRoute from "./PrivateRoute";
+import LandingPage from "./LandingPage";
 import { useAuthValue } from "./AuthContext";
 
 import Profile from "./Login/Profile";
 import NotAuthTopbar from "./NotAuthNavBar";
+import ProductDescPage from "./ProductDescPage";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -25,9 +27,9 @@ function App() {
   return (
     <BrowserRouter>
     
-      <AuthProvider value={{ currentUser }}>
+      {/* <AuthProvider value={{ currentUser }}>
       
-      {/* {isAuthenticated?<Topbar />:<NotAuthTopbar/>} */}
+
       <Topbar />
         <Routes>
           <Route path="/" exact element={<LoginForm />} />
@@ -42,9 +44,11 @@ function App() {
           }/>
         </Routes>
         
-        {/* <IdCards /> */}
-        {/* <SignUpForm /> */}
-      </AuthProvider>
+
+      </AuthProvider> */}
+      <Topbar/>
+      <ProductDescPage/>
+
     </BrowserRouter>
   );
 }
