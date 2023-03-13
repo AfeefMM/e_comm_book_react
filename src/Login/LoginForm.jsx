@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link,useNavigate } from "react-router-dom";
-import {signInWithEmailAndPassword, sendEmailVerification} from 'firebase/auth'
+import {signInWithEmailAndPassword, sendEmailVerification,sendPasswordResetEmail} from 'firebase/auth'
 import { auth } from "../firebase";
 import { useAuthValue } from "../AuthContext";
 import Topbar from "../navbar";
@@ -33,7 +33,16 @@ function LoginForm() {
     })
     .catch(err => setError(err.message))
   }
-
+//reset password
+const sendPasswordReset = async (email) => {
+  try {
+    await sendPasswordResetEmail(auth, email);
+    alert("Password reset link sent!");
+  } catch (err) {
+    console.error(err);
+    alert(err.message);
+  }
+};
   return (
     <div>
     <div className="container loginContainer">
