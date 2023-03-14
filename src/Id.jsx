@@ -1,21 +1,34 @@
-import React, { Component } from "react";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
-class ID extends Component {
+import { Link } from "react-router-dom";
 
-  render() {
-    return (
-      <div className="card m-2" style={{minHeight:"250px"}}>
-        <img src={this.props.photo} className="card-img-top" alt="..." style={{maxHeight:"100px"}} />
-        <div className="card-body">
-          <h4 className="card-title">
-            {this.props.book_title}
-          </h4>
-          <h5>{this.props.book_author}</h5>
-          <span className="card-text">Price: {this.props.physical_price} </span> <br />
-        </div>
+function ID(props) {
+  let navigate = useNavigate();
+
+
+  return (
+    <div className="card m-2" style={{ minHeight: "250px" }} key={props.key}>
+      <img
+        src={props.photo}
+        className="card-img-top"
+        alt="..."
+        style={{ maxHeight: "100px" }}
+      />
+      <div className="card-body">
+        <h4 className="card-title">
+          <Link
+            to={`/description/${props.book_id}`}
+            style={{ textDecoration: "none", color: "black" }}
+          >
+            {props.book_title}
+          </Link>
+        </h4>
+        <h5>{props.book_author}</h5>
+        <span className="card-text">Price: {props.physical_price} </span> <br />
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default ID;
