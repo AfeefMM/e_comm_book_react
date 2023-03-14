@@ -47,7 +47,7 @@ function App() {
 
       </AuthProvider> */}
       <Topbar/>
-      <ProductDescPage/>
+      <IdCards/>
 
     </BrowserRouter>
   );
