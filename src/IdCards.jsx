@@ -161,13 +161,13 @@ function IdCards() {
                     book_title={book.book_title}
                     book_author={book.book_author}
                     photo={book.book_img}
+                    book_id={book.book_id}
                   />
                 </Col>
               );
             })
             //   books.some
             //   ((book, i) => {
-
             //     return (
             //       <Col>
             //         <ID

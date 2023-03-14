@@ -6,17 +6,76 @@ import ProductQuantity from "./Dropdowns/ProductQuantity";
 import AddCartBtn from "./DescriptionPage/AddToCartBtn";
 import ProductTypeCard from "./DescriptionPage/ProductTypeCard";
 import ProdTypeGroup from "./DescriptionPage/ProdTypeGroup";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "./firebase";
+import { useState,useEffect } from "react";
+import { useSearchParams,useParams } from "react-router-dom";
 
-function ProductDescPage() {
+function ProductDescPage(props) {
+
+   //const [id]  = useSearchParams();
+    const {bookId}  = useParams();
+
+    //to retrieve books from firestore
+ const [books, setBooks] = useState([]);
+ const fetchBooks = async () => {
+   await getDocs(collection(db, "books")).then((querySnapshot) => {
+     const newData = querySnapshot.docs.map((doc) => ({
+       ...doc.data(),
+       id: doc.id,
+     }));
+     setBooks(newData);
+     //console.log(books, newData);
+   });
+ };
+
+ useEffect(() => {
+   fetchBooks();
+   filterBySearch();
+ }, []);
+
+//implementation of searchbar
+const [filteredList, setFilteredList] = useState(books);
+
+const filterBySearch = () => {
+  // Access input value
+  
+//   const query = id.get("bookId");
+//   console.log("id: "+query)
+  const query = bookId;
+
+      const results = books.filter((book)=>{
+        if(book.book_id.toString() === query.toString())console.log("true")
+
+          return (book.book_id.toString() === query.toString())
+      });
+
+        console.log("book id: " + results.book_id)
+
+      setFilteredList(results);
+  
+
+  // Trigger render with updated values
+  //setFilteredList(updatedList);
+};
+
   return (
     <div>
       <div className="row flex-lg-row-reverse align-items-center g-5 py-5">
         <div className="col-lg-6 ">
-          <ProductTitle />
-          <ProductPrice />
+          <ProductTitle 
+          book_title={filteredList.book_title}
+          />
+          <ProductPrice 
+          physical_price = {filteredList.physical_price}
+          />
           <StarRating />
-          <ProductDesc />
-          <ProductQuantity />
+          <ProductDesc 
+          book_desc = {filteredList.book_desc}
+          />
+          <ProductQuantity 
+          quantity = {filteredList.quantity}
+          />
             <ProdTypeGroup/>
           {/* <div class="float-container">
             <div class="float-child">

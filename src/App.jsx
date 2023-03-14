@@ -1,6 +1,5 @@
 import React, { useState, useEffect,useContext } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { AuthProvider } from "./AuthContext";
 import { auth } from "./firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import Topbar from "./navbar";
@@ -46,8 +45,22 @@ function App() {
         
 
       </AuthProvider> */}
-      <Topbar/>
-      <IdCards/>
+       <Topbar />
+        <Routes>
+          <Route path="/" exact element={<IdCards />} />
+          <Route path="/login" exact element={<LoginForm />} />
+          <Route path="/signup" exact element={<SignUpForm />} />
+          <Route path="/list" exact element={<IdCards />} />
+          <Route path="/description/:bookId?" exact element={<ProductDescPage/>} />
+          <Route path="/verify-email" exact element={<VerifyEmail/>} />
+
+          <Route exact path='/profile' element={
+            <PrivateRoute>
+              <Profile/>
+            </PrivateRoute>
+          }/>
+        </Routes>
+      {/* <IdCards/> */}
 
     </BrowserRouter>
   );

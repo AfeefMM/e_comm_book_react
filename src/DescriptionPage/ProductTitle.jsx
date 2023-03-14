@@ -1,9 +1,9 @@
 
 
-function ProductTitle(){
+function ProductTitle(props){
 
     return (
-        <h2>Title of product</h2>
+        <h2>{props.book_title}</h2>
     );
 }
 
