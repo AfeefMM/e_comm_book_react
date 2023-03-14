@@ -36,6 +36,10 @@ function ProductDescPage(props) {
 
 //implementation of searchbar
 const [filteredList, setFilteredList] = useState(books);
+const [bookTitle,setbookTitle] = useState('')
+const [book_desc,setbook_desc] = useState('')
+const [physical_price,setphysical_price] = useState('')
+const [quantity,setquantity] = useState('')
 
 const filterBySearch = () => {
   // Access input value
@@ -45,12 +49,19 @@ const filterBySearch = () => {
   const query = bookId;
 
       const results = books.filter((book)=>{
-        if(book.book_id.toString() === query.toString())console.log("true")
+        if(book.book_id.toString() === query.toString()){
+            setbookTitle(book.book_title)
+            console.log("book title: " + book.book_title)
+            setbook_desc(book.book_desc)
+            setphysical_price(book.physical_price)
+            setquantity(book.quantity)
+            console.log("true")
+        }
 
           return (book.book_id.toString() === query.toString())
       });
 
-        console.log("book id: " + results.book_id)
+        // console.log("book id: " + bookTitle)
 
       setFilteredList(results);
   
@@ -64,17 +75,17 @@ const filterBySearch = () => {
       <div className="row flex-lg-row-reverse align-items-center g-5 py-5">
         <div className="col-lg-6 ">
           <ProductTitle 
-          book_title={filteredList.book_title}
+          book_title={bookTitle}
           />
           <ProductPrice 
-          physical_price = {filteredList.physical_price}
+          physical_price = {physical_price}
           />
           <StarRating />
           <ProductDesc 
-          book_desc = {filteredList.book_desc}
+          book_desc = {book_desc}
           />
           <ProductQuantity 
-          quantity = {filteredList.quantity}
+          quantity = {quantity}
           />
             <ProdTypeGroup/>
           {/* <div class="float-container">
