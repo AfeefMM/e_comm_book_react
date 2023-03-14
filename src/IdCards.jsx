@@ -85,39 +85,49 @@ var columnsPerRow = 4;
 //   };
 
 function IdCards() {
-  //implementation of searchbar
-  const [query, setQuery] = useState('');
-  const [searchParam] = useState(["book_title"]);
-//   const handleChange = (e) => {
-//     const results = books.filter((book) => {
-//       if (e.target.value === "" ) return books;
-//       return book.book_title
-//         .toLowerCase()
-//         .includes(e.target.value.toLowerCase());
-//     });
-//     setQuery({
-//       query: e.target.value,
-//       list: results,
-//     });
-//     //setQuery(e.target.value);
-//   };
 
-  //to retrieve books from firestore
-  const [books, setBooks] = useState([]);
-  const fetchBooks = async () => {
-    await getDocs(collection(db, "books")).then((querySnapshot) => {
-      const newData = querySnapshot.docs.map((doc) => ({
-        ...doc.data(),
-        id: doc.id,
-      }));
-      setBooks(newData);
-      console.log(books, newData);
-    });
+
+ //to retrieve books from firestore
+ const [books, setBooks] = useState([]);
+ const fetchBooks = async () => {
+   await getDocs(collection(db, "books")).then((querySnapshot) => {
+     const newData = querySnapshot.docs.map((doc) => ({
+       ...doc.data(),
+       id: doc.id,
+     }));
+     setBooks(newData);
+     console.log(books, newData);
+   });
+ };
+
+ useEffect(() => {
+   fetchBooks();
+   setFilteredList(books);
+ }, []);
+
+
+  //implementation of searchbar
+  const [filteredList, setFilteredList] = useState(books);
+
+  const filterBySearch = (event) => {
+    // Access input value
+    const query = event.target.value;
+    
+    if(query !==''){
+        const results = books.filter((book)=>{
+            return book.book_title.toLowerCase().startsWith(query.toLowerCase())
+        });
+        setFilteredList(results);
+    }
+    else{
+        setFilteredList(books);
+    }
+
+    // Trigger render with updated values
+    //setFilteredList(updatedList);
   };
 
-  useEffect(() => {
-    fetchBooks();
-  }, []);
+
 
   return (
     <div>
@@ -126,15 +136,13 @@ function IdCards() {
           <input
             class="form-control border-end-0 border rounded-pill"
             type="search"
-            defaultValue="Search"
-            value={query}
-            onChange={e => {setQuery(e.target.value)}}
+            defaultValue=""
+            onChange={filterBySearch}
           />
           <span class="input-group-append">
             <button
               class="btn btn-outline-secondary bg-white border-bottom-0 border rounded-pill"
               type="button"
-
             >
               <i class="bi bi-search"></i>
             </button>
@@ -144,51 +152,34 @@ function IdCards() {
       <div className="gap-0 row-gap-3">
         <Row xs={1} md={columnsPerRow} className="pt-2">
           {
-          query.query === '' ? books.map((book, i) => {
-
-            return (
-              <Col>
-                <ID
-                  key={i}
-                  physical_price={book.physical_price}
-                  book_title={book.book_title}
-                  book_author={book.book_author}
-                  photo={book.book_img}
-                />
-              </Col>
-            );
-          })
-          : 
-          books.filter((item)=>{
-            return searchParam.some((book,i)=>{
-                return (
-                          <Col>
-                            <ID
-                              key={i}
-                              physical_price={item[book].physical_price}
-                              book_title={item[book].book_title}
-                              book_author={item[book].book_author}
-                              photo={item[book].book_img}
-                            />
-                          </Col>
-                        );
+            filteredList.map((book, i) => {
+              return (
+                <Col>
+                  <ID
+                    key={i}
+                    physical_price={book.physical_price}
+                    book_title={book.book_title}
+                    book_author={book.book_author}
+                    photo={book.book_img}
+                  />
+                </Col>
+              );
             })
-          })
-        //   books.some
-        //   ((book, i) => {
+            //   books.some
+            //   ((book, i) => {
 
-        //     return (
-        //       <Col>
-        //         <ID
-        //           key={i}
-        //           physical_price={book.physical_price}
-        //           book_title={book.book_title}
-        //           book_author={book.book_author}
-        //           photo={book.book_img}
-        //         />
-        //       </Col>
-        //     );
-        //   })
+            //     return (
+            //       <Col>
+            //         <ID
+            //           key={i}
+            //           physical_price={book.physical_price}
+            //           book_title={book.book_title}
+            //           book_author={book.book_author}
+            //           photo={book.book_img}
+            //         />
+            //       </Col>
+            //     );
+            //   })
           }
         </Row>
       </div>
