@@ -1,17 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import ID from "./Id";
-import { collection,getDocs } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import { db } from "./firebase";
 import Cart from "./Dropdowns/Cart";
 var columnsPerRow = 4;
-
-
-
-
-
-
 
 // const state = {
 //     ids: [
@@ -90,52 +84,116 @@ var columnsPerRow = 4;
 //     ],
 //   };
 
-function IdCards (){
-    const [books,setBooks] = useState([]);
-const fetchBooks = async () =>{
+function IdCards() {
+  //implementation of searchbar
+  const [query, setQuery] = useState('');
+  const [searchParam] = useState(["book_title"]);
+//   const handleChange = (e) => {
+//     const results = books.filter((book) => {
+//       if (e.target.value === "" ) return books;
+//       return book.book_title
+//         .toLowerCase()
+//         .includes(e.target.value.toLowerCase());
+//     });
+//     setQuery({
+//       query: e.target.value,
+//       list: results,
+//     });
+//     //setQuery(e.target.value);
+//   };
 
-    await getDocs(collection(db, "books"))
-    .then((querySnapshot)=>{               
-        const newData = querySnapshot.docs
-            .map((doc) => ({...doc.data(), id:doc.id }));
-            setBooks(newData);                
-        console.log(books, newData);
-    })
-}
+  //to retrieve books from firestore
+  const [books, setBooks] = useState([]);
+  const fetchBooks = async () => {
+    await getDocs(collection(db, "books")).then((querySnapshot) => {
+      const newData = querySnapshot.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+      setBooks(newData);
+      console.log(books, newData);
+    });
+  };
 
-    useEffect(()=>{
-        fetchBooks();
-    }, [])
-    console.log("books");
-    return (
-      <div>
+  useEffect(() => {
+    fetchBooks();
+  }, []);
 
-        <div className="gap-0 row-gap-3">
-          <Row xs={1} md={columnsPerRow} className="pt-2">
-            {books.map((book,i) => {
-            //   console.log("b")
-              return (
-                <Col>
-                  <ID
-                    key={i}
-                    id={book.book_id}
-                    first_name={book.book_author}
-                    last_name={book.book_desc}
-                    email={book.book_title}
-                    photo={book.book_img}
-                  />
-                </Col>
-              );
-            })}
-          </Row>
+  return (
+    <div>
+      <form className="d-flex justify-content-center my-5">
+        <div class="input-group searchBar">
+          <input
+            class="form-control border-end-0 border rounded-pill"
+            type="search"
+            defaultValue="Search"
+            value={query}
+            onChange={e => {setQuery(e.target.value)}}
+          />
+          <span class="input-group-append">
+            <button
+              class="btn btn-outline-secondary bg-white border-bottom-0 border rounded-pill"
+              type="button"
+
+            >
+              <i class="bi bi-search"></i>
+            </button>
+          </span>
         </div>
+      </form>
+      <div className="gap-0 row-gap-3">
+        <Row xs={1} md={columnsPerRow} className="pt-2">
+          {
+          query.query === '' ? books.map((book, i) => {
+
+            return (
+              <Col>
+                <ID
+                  key={i}
+                  physical_price={book.physical_price}
+                  book_title={book.book_title}
+                  book_author={book.book_author}
+                  photo={book.book_img}
+                />
+              </Col>
+            );
+          })
+          : 
+          books.filter((item)=>{
+            return searchParam.some((book,i)=>{
+                return (
+                          <Col>
+                            <ID
+                              key={i}
+                              physical_price={item[book].physical_price}
+                              book_title={item[book].book_title}
+                              book_author={item[book].book_author}
+                              photo={item[book].book_img}
+                            />
+                          </Col>
+                        );
+            })
+          })
+        //   books.some
+        //   ((book, i) => {
+
+        //     return (
+        //       <Col>
+        //         <ID
+        //           key={i}
+        //           physical_price={book.physical_price}
+        //           book_title={book.book_title}
+        //           book_author={book.book_author}
+        //           photo={book.book_img}
+        //         />
+        //       </Col>
+        //     );
+        //   })
+          }
+        </Row>
       </div>
-    );
-
- 
+    </div>
+  );
 }
-
-
-
 
 export default IdCards;

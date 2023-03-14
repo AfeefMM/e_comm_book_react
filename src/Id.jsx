@@ -1,16 +1,17 @@
 import React, { Component } from "react";
 
 class ID extends Component {
-    
+
   render() {
     return (
-      <div className="card m-2" >
-        <img src={this.props.photo} className="card-img-top" alt="..." />
+      <div className="card m-2" style={{minHeight:"250px"}}>
+        <img src={this.props.photo} className="card-img-top" alt="..." style={{maxHeight:"100px"}} />
         <div className="card-body">
-          <h5 className="card-title">
-            {this.props.first_name} {this.props.last_name}
-          </h5>
-          <span className="card-text">Price: {this.props.id} </span> <br />
+          <h4 className="card-title">
+            {this.props.book_title}
+          </h4>
+          <h5>{this.props.book_author}</h5>
+          <span className="card-text">Price: {this.props.physical_price} </span> <br />
         </div>
       </div>
     );
