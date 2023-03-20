@@ -41,14 +41,23 @@ function ProductDescPage(props) {
   const [quantity, setquantity] = useState(null);
   const [image, setimage] = useState(null);
 
-  const [prodQuantity, setprodQuantity] = useState(1);
 
+  //quantity values
+  const [prodQuantity, setprodQuantity] = useState(1);
   const quantityHandle = num => {
     // 👇️ take the parameter passed from the Child component
     setprodQuantity(current => current + num);
 
-    console.log('argument from Child: ', num);
+    console.log('quantity Child: ', num);
   };
+
+
+//price value
+const [selectedPrice, setselectedPrice] = useState(0)
+const selectPrice = price =>{
+  setselectedPrice(price);
+  console.log(price)
+}
 
   const filterBySearch = () => {
     // Access input value
@@ -96,7 +105,7 @@ function ProductDescPage(props) {
                 <StarRating />
                 <ProductDesc book_desc={book.book_desc} />
                 <ProductQuantity quantity={book.quantity} quantityHandle={quantityHandle}/>
-                <ProdTypeGroup physical_price={book.physical_price} e_book_price={book.e_book_price}/>
+                <ProdTypeGroup  selectPrice={selectPrice} physical_price={book.physical_price} e_book_price={book.e_book_price}/>
 
                 {/* <ProductTypeCard physical_price={book.physical_price} /> */}
                 {/* <ProductTypeECard e_book_price={book.e_book_price}/> */}
@@ -111,7 +120,7 @@ function ProductDescPage(props) {
           </div> */}
 
                 <div className="d-grid gap-2 d-md-flex justify-content-md-start">
-                  <AddCartBtn />
+                  <AddCartBtn book_title={book.book_title} selectedPrice={selectedPrice} prodQuantity={prodQuantity} />
                 </div>
               </div>
               <div className="col-10 col-sm-8 col-lg-6">
