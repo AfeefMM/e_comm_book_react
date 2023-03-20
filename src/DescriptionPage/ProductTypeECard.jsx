@@ -1,7 +1,21 @@
+import { useState } from "react";
+
 function ProductTypeECard(props) {
+  
+
+const toggleCard = () =>{
+  props.isPrice("e");
+  props.toggleClass("e");
+  console.log(props.isSelectedE)
+}
+//+ props.isSelected?'cardSelector':''
   return (
-    <div className="card m-2" onClick={()=>props.isPrice("e")} style={{ maxWidth: "150px",height:"125px" }}>
-      <div className="card-body" style={{ fontSize: "16px" }}>
+    <div
+      className='card m-2'
+      onClick={() => toggleCard()}
+      style={{ maxWidth: "150px", height: "125px", color:props.isSelectedE?'#e4dccf':'black' , backgroundColor:props.isSelectedE?'#576f72':'#e4dccf'}}
+    >
+      <div className={'card-body '} style={{ fontSize: "16px" }}>
         <span className="card-text" style={{ fontWeight: "400" }}>
           E-book price
         </span>{" "}

@@ -1,67 +1,77 @@
-import React, { Component, useContext } from "react";
+import React, { Component, useContext, useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.js";
 import "bootstrap-icons/font/bootstrap-icons.css";
-
+import { useCart } from "react-use-cart";
 
 function Cart() {
   //call this in TopBar
   //values to get: item name and price
 
+  const { items } = useCart();
 
+  const [bookItems, setbookItems] = useState("");
+
+  const getItems = () => {
+    setbookItems(items);
+    console.log(bookItems);
+  };
+
+  useEffect(() => {
+    getItems();
+  }, []);
 
   return (
-    <div className="btn-group dropstart">
-      <button
-        className="navbar-toggler dropstart"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarNavDarkDropdown"
-        aria-controls="navbarNavDarkDropdown"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span className="navbar-toggler-icon"></span>
-      </button>
-      <div className="collapse navbar-collapse" id="navbarNavDarkDropdown">
-        <ul className="navbar-nav">
-          <li className="nav-item dropdown">
-            <button
-              className="btn navCart iconClr"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
+    <div class="dropdown">
+  <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <i className="bi bi-basket2-fill"></i>
+  </button>
+  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+  {
+              items.map((book,i)=>{
+                return(
+                  <div>
+                    {book.id}
+                  </div>
+                );
+              })
+            }
+  </div>
+</div>
+    // <div className="btn-group dropstart">
+    //   <button
+    //     className="navbar-toggler dropstart"
+    //     type="button"
+    //     data-bs-toggle="collapse"
+    //     data-bs-target="#navbarNavDarkDropdown"
+    //     aria-controls="navbarNavDarkDropdown"
+    //     aria-expanded="false"
+    //     aria-label="Toggle navigation"
+    //   >
+    //     <span className="navbar-toggler-icon"></span>
+    //   </button>
+    //   <div className="collapse navbar-collapse dropdown" id="navbarNavDarkDropdown">
+    //         <button
+    //           className="btn navCart iconClr dropdown-toggle"
+    //           data-bs-toggle="dropdown"
+    //           aria-expanded="false"
+    //           id="dropdownMenuButton"
+    //         >
+    //           <i className="bi bi-basket2-fill"></i>
+    //         </button>
+    //         {
+    //           items.map((book,i)=>{
+    //             return(
+    //               <div>
+    //                 {book.id}
+    //               </div>
+    //             );
+    //           })
+    //         }
+            
 
-              
-            </button>
-
-            <ul className="dropdown-menu cardItem">
-              <li>
-                <a className="dropdown-item" href="#">
-                  Action
-                  <button className="btn ">
-                    <i
-                      className="bi bi-trash3-fill"
-                      style={{ color: "rgb(255, 3, 3)" }}
-                    ></i>
-                  </button>
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" href="#">
-                  Another action
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" href="#">
-                  Something else here
-                </a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </div>
+    //   </div>
+    // </div>
   );
 }
 

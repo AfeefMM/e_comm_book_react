@@ -17,6 +17,11 @@ body {
     color: white;
 }
 
+.cardSelector{
+    background-color:#576f72 ;
+    color: #e4dccf;
+}
+
 .cardDets{
     width: 18 rem;
 }
