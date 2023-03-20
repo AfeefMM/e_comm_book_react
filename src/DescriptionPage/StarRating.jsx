@@ -6,9 +6,9 @@ const StarRating = () => {
     //array value as variable
     <div style={{display:'inline-block'}}>
     <div className="star-rating">
-      {[...Array(5)].map((star,i) => {        
+      {[...Array(5)].map((star) => {        
         return (         
-          <span key= {i}className="star">&#9733;</span>        
+          <span className="star">&#9733;</span>        
         );
       })}
       <div>

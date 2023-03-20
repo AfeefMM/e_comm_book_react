@@ -1,10 +1,11 @@
 
 
-function ProductDesc(props){
+function ProductDesc(){
 
     return(
         <p className="lead landingPgsubTitle" style={{fontWeight:'300', lineHeight:'150%'}}>
-            {props.book_desc}
+            From literature to applied educational resources,we have alot of
+            textbooks to offer
           </p>
     );
 }
