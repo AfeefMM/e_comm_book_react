@@ -14,9 +14,9 @@ import { useAuthValue } from "./AuthContext";
 import Profile from "./Login/Profile";
 import NotAuthTopbar from "./NotAuthNavBar";
 import ProductDescPage from "./ProductDescPage";
-import CartState from "./Context/Cart/CartState";
 
-export const cartContext = React.createContext();
+
+
 
 
 function App() {

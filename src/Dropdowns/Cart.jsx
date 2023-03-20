@@ -2,13 +2,13 @@ import React, { Component, useContext } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.js";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import CartContext from "../Context/Cart/CartContext";
+
 
 function Cart() {
   //call this in TopBar
   //values to get: item name and price
 
-  const { cartItems,checkout, clearCart ,removeFromCart, increase, decrease} = useContext(CartContext);
+
 
   return (
     <div className="btn-group dropstart">
@@ -31,19 +31,11 @@ function Cart() {
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
-              {cartItems.length >= 0 && (<i className="bi bi-basket2-fill">{cartItems.length}</i>)}
+
               
             </button>
-            {cartItems.length === 0 ? (
-                <h4 style={{}}>Cart is empty</h4>
-              ) : (
-                <ul>
-                  {cartItems.map((product) => (
-                    <p> {product.book_title}</p>
-                  ))}
-                </ul>
-              )}
-            {/* <ul className="dropdown-menu cardItem">
+
+            <ul className="dropdown-menu cardItem">
               <li>
                 <a className="dropdown-item" href="#">
                   Action
@@ -65,7 +57,7 @@ function Cart() {
                   Something else here
                 </a>
               </li>
-            </ul> */}
+            </ul>
           </li>
         </ul>
       </div>

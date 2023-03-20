@@ -4,7 +4,6 @@ import ProductPrice from "./DescriptionPage/ProductPrice";
 import StarRating from "./DescriptionPage/StarRating";
 import ProductQuantity from "./Dropdowns/ProductQuantity";
 import AddCartBtn from "./DescriptionPage/AddToCartBtn";
-import ProductTypeCard from "./DescriptionPage/ProductTypeCard";
 import ProdTypeGroup from "./DescriptionPage/ProdTypeGroup";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "./firebase";
@@ -12,66 +11,69 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 function ProductDescPage(props) {
+  //const [id]  = useSearchParams();
+  const { bookId } = useParams();
 
-   //const [id]  = useSearchParams();
-    const {bookId}  = useParams();
+  //to retrieve books from firestore
+  const [books, setBooks] = useState([]);
+  const fetchBooks = async () => {
+    await getDocs(collection(db, "books")).then((querySnapshot) => {
+      const newData = querySnapshot.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+      setBooks(newData);
+      //console.log(books, newData);
+    });
+  };
 
-    //to retrieve books from firestore
- const [books, setBooks] = useState([]);
- const fetchBooks = async () => {
-   await getDocs(collection(db, "books")).then((querySnapshot) => {
-     const newData = querySnapshot.docs.map((doc) => ({
-       ...doc.data(),
-       id: doc.id,
-     }));
-     setBooks(newData);
-     //console.log(books, newData);
-   });
- };
+  useEffect(() => {
+    fetchBooks();
+    filterBySearch();
+  }, []);
 
- useEffect(() => {
-   fetchBooks();
-   filterBySearch();
- }, []);
+  //implementation of searchbar
+  const [filteredList, setFilteredList] = useState(books);
+  const [bookTitle, setbookTitle] = useState(null);
+  const [book_desc, setbook_desc] = useState(null);
+  const [physical_price, setphysical_price] = useState(null);
+  const [quantity, setquantity] = useState(null);
+  const [image, setimage] = useState(null);
 
-//implementation of searchbar
-const [filteredList, setFilteredList] = useState(books);
-const [bookTitle,setbookTitle] = useState('')
-const [book_desc,setbook_desc] = useState('')
-const [physical_price,setphysical_price] = useState('')
-const [quantity,setquantity] = useState('')
+  const filterBySearch = () => {
+    // Access input value
 
-const filterBySearch = () => {
-  // Access input value
-  
-//   const query = id.get("bookId");
-//   console.log("id: "+query)
-  const query = bookId;
+    //   const query = id.get("bookId");
+    //   console.log("id: "+query)
+    const query = bookId;
 
-      const results = books.filter((book)=>{
-        if(book.book_id.toString() === query.toString()){
-            setbookTitle(book.book_title)
-            console.log("book title: " + book.book_title)
-            setbook_desc(book.book_desc)
-            setphysical_price(book.physical_price)
-            setquantity(book.quantity)
-            console.log("true")
-        }
+    const results = books.filter((book) => {
+      if (book.book_id.toString() === query.toString()) {
+        setbookTitle(book.book_title);
+        console.log("book title: " + book.book_title);
+        setbook_desc(book.book_desc);
+        setphysical_price(book.physical_price);
+        setquantity(book.quantity);
+        setimage(book.book_img);
+        console.log("true");
+        console.log("bookTitle: " + bookTitle);
+      }
 
-          return (book.book_id.toString() === query.toString())
-      });
+      return book.book_id.toString() === query.toString();
+    });
 
-        // console.log("book id: " + bookTitle)
+    // console.log("book id: " + bookTitle)
 
-      setFilteredList(results);
-  
+    setFilteredList(results);
 
-  // Trigger render with updated values
-  //setFilteredList(updatedList);
-};
+    // Trigger render with updated values
+    //setFilteredList(updatedList);
+  };
 
+  useEffect(() => {
+    // currentUser changed
+  }, [bookTitle]);
 
-  const {addToCart,increase, cartItems, sumItems, itemCount} = useContext(CartContext)
   return (
     <div>
       {books.map((book, i) => {
@@ -95,7 +97,6 @@ const filterBySearch = () => {
             <ProductTypeCard />
             </div>
           </div> */}
-
 
                 <div className="d-grid gap-2 d-md-flex justify-content-md-start">
                   <AddCartBtn />

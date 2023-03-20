@@ -1,9 +1,9 @@
 
-function ProductPrice(){
+function ProductPrice(props){
 
     return(
         <p className="lead landingPgsubTitle" style={{fontWeight:'400', lineHeight:'150%'}}>
-            $18
+            {props.physical_price}
           </p>
     );
 }
