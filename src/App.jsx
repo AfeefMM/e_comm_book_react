@@ -10,7 +10,7 @@ import VerifyEmail from "./Login/VerifyEmail";
 import PrivateRoute from "./PrivateRoute";
 import LandingPage from "./LandingPage";
 import { useAuthValue } from "./AuthContext";
-
+import {CartProvider} from "react-use-cart";
 import Profile from "./Login/Profile";
 import NotAuthTopbar from "./NotAuthNavBar";
 import ProductDescPage from "./ProductDescPage";
@@ -33,6 +33,7 @@ function App() {
   const {isAuthenticated} = useAuthValue()
 
   return (
+    <CartProvider>
     <BrowserRouter>
     
       {/* <AuthProvider value={{ currentUser }}>
@@ -75,6 +76,7 @@ function App() {
       {/* <IdCards/> */}
 
     </BrowserRouter>
+    </CartProvider>
   );
 }
 

@@ -6,10 +6,10 @@ function ProdTypeGroup(props) {
     <div className="container" style={{maxWidth:"300px",alignContent:"start"}}>
         <div className="row" xs={1} md={2}>
             <div className="col">
-            <ProductTypeCard physical_price={props.physical_price}/>
+            <ProductTypeCard physical_price={props.e_book_price }/>
             </div>
             <div className="col">
-            <ProductTypeECard e_book_price={props.e_book_price}/>
+            <ProductTypeECard e_book_price={props.physical_price}/>
             </div>
         
 

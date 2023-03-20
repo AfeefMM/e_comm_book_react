@@ -1,8 +1,10 @@
 import { useContext, useState } from "react";
 
+import { useCart } from "react-use-cart";
 
 
 function AddCartBtn(props){
+
 
 
     return(

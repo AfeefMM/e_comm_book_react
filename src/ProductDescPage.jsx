@@ -1,14 +1,15 @@
 import ProductTitle from "./DescriptionPage/ProductTitle";
 import ProductDesc from "./DescriptionPage/ProductDesc";
-import ProductPrice from "./DescriptionPage/ProductPrice";
 import StarRating from "./DescriptionPage/StarRating";
 import ProductQuantity from "./Dropdowns/ProductQuantity";
 import AddCartBtn from "./DescriptionPage/AddToCartBtn";
 import ProdTypeGroup from "./DescriptionPage/ProdTypeGroup";
+
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "./firebase";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+
 
 function ProductDescPage(props) {
   //const [id]  = useSearchParams();
@@ -39,6 +40,15 @@ function ProductDescPage(props) {
   const [physical_price, setphysical_price] = useState(null);
   const [quantity, setquantity] = useState(null);
   const [image, setimage] = useState(null);
+
+  const [prodQuantity, setprodQuantity] = useState(1);
+
+  const quantityHandle = num => {
+    // 👇️ take the parameter passed from the Child component
+    setprodQuantity(current => current + num);
+
+    console.log('argument from Child: ', num);
+  };
 
   const filterBySearch = () => {
     // Access input value
@@ -83,11 +93,13 @@ function ProductDescPage(props) {
             <div className="row flex-lg-row-reverse align-items-center g-5 py-5">
               <div className="col-lg-6 " key={i}>
                 <ProductTitle book_title={book.book_title} />
-                <ProductPrice physical_price={book.physical_price} />
                 <StarRating />
                 <ProductDesc book_desc={book.book_desc} />
-                <ProductQuantity quantity={book.quantity} />
-                <ProdTypeGroup />
+                <ProductQuantity quantity={book.quantity} quantityHandle={quantityHandle}/>
+                <ProdTypeGroup physical_price={book.physical_price} e_book_price={book.e_book_price}/>
+
+                {/* <ProductTypeCard physical_price={book.physical_price} /> */}
+                {/* <ProductTypeECard e_book_price={book.e_book_price}/> */}
                 {/* <div class="float-container">
             <div class="float-child">
             <ProductTypeCard />

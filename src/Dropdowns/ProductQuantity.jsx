@@ -8,6 +8,7 @@ function ProductQuantity(props) {
     let maxCount = props.quantity;
     if (counter < maxCount) {
       setCounter((count) => count + 1);
+      props.quantityHandle(counter+1)
     }
   };
 
@@ -15,6 +16,7 @@ function ProductQuantity(props) {
   const decrease = () => {
     if (counter > 0) {
       setCounter((count) => count - 1);
+      props.quantityHandle(counter-1)
     }
   };
 

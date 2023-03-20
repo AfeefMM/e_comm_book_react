@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 import { Link } from "react-router-dom";
+import AddMainCartBtn from "./DescriptionPage/AddMainCartBtn";
 
 function ID(props) {
   let navigate = useNavigate();
@@ -26,6 +27,7 @@ function ID(props) {
         </h4>
         <h5>{props.book_author}</h5>
         <span className="card-text">Price: {props.physical_price} </span> <br />
+        <AddMainCartBtn title={props.book_title} price={props.physical_price}/>
       </div>
     </div>
   );
