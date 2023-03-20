@@ -14,8 +14,16 @@ import { useAuthValue } from "./AuthContext";
 import Profile from "./Login/Profile";
 import NotAuthTopbar from "./NotAuthNavBar";
 import ProductDescPage from "./ProductDescPage";
+import CartState from "./Context/Cart/CartState";
+
+export const cartContext = React.createContext();
+
 
 function App() {
+
+    
+
+    //authentication
   const [currentUser, setCurrentUser] = useState(null);
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -23,6 +31,7 @@ function App() {
      })
   }, [])
   const {isAuthenticated} = useAuthValue()
+
   return (
     <BrowserRouter>
     
@@ -45,7 +54,9 @@ function App() {
         
 
       </AuthProvider> */}
+      {/* <CartState> */}
        <Topbar />
+       
         <Routes>
           <Route path="/" exact element={<IdCards />} />
           <Route path="/login" exact element={<LoginForm />} />
@@ -60,6 +71,7 @@ function App() {
             </PrivateRoute>
           }/>
         </Routes>
+        {/* </CartState> */}
       {/* <IdCards/> */}
 
     </BrowserRouter>
@@ -67,3 +79,4 @@ function App() {
 }
 
 export default App;
+// 361d9572ed9b5c0aba0e637a22a4478ba85c6544

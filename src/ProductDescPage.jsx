@@ -7,8 +7,9 @@ import AddCartBtn from "./DescriptionPage/AddToCartBtn";
 import ProdTypeGroup from "./DescriptionPage/ProdTypeGroup";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "./firebase";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
+import CartContext from "./Context/Cart/CartContext";
 
 function ProductDescPage(props) {
   //const [id]  = useSearchParams();
@@ -74,6 +75,8 @@ function ProductDescPage(props) {
     // currentUser changed
   }, [bookTitle]);
 
+
+  const {addToCart,increase, cartItems, sumItems, itemCount} = useContext(CartContext)
   return (
     <div>
       {books.map((book, i) => {
@@ -86,8 +89,8 @@ function ProductDescPage(props) {
                 <ProductPrice physical_price={book.physical_price} />
                 <StarRating />
                 <ProductDesc book_desc={book.book_desc} />
-                <ProductQuantity quantity={book.quantity} />
-                <ProdTypeGroup />
+                <ProductQuantity quantity={book.quantity} book ={book}/>
+                <ProdTypeGroup e_book_price={book.e_book_price} physical_price={book.physical_price}/>
                 {/* <div class="float-container">
             <div class="float-child">
             <ProductTypeCard />
@@ -99,7 +102,7 @@ function ProductDescPage(props) {
           </div> */}
 
                 <div className="d-grid gap-2 d-md-flex justify-content-md-start">
-                  <AddCartBtn />
+                  <AddCartBtn book={book.book_id}/>
                 </div>
               </div>
               <div className="col-10 col-sm-8 col-lg-6">

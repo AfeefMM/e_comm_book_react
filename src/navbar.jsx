@@ -1,10 +1,12 @@
-import { Component } from "react";
+import { Component, useContext } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "react-bootstrap/Navbar";
 import Cart from "./Dropdowns/Cart";
 import ProfileBtn from "./Dropdowns/ProfileBtn";
+import CartContext from "./Context/Cart/CartContext";
 
 class Topbar extends Component {
+
   render() {
     return (
       <div>

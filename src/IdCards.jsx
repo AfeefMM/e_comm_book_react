@@ -87,104 +87,104 @@ var columnsPerRow = 4;
 function IdCards() {
 
 
- //to retrieve books from firestore
- const [books, setBooks] = useState([]);
- const fetchBooks = async () => {
-   await getDocs(collection(db, "books")).then((querySnapshot) => {
-     const newData = querySnapshot.docs.map((doc) => ({
-       ...doc.data(),
-       id: doc.id,
-     }));
-     setBooks(newData);
-     console.log(books, newData);
-   });
- };
-
- useEffect(() => {
-   fetchBooks();
-   setFilteredList(books);
- }, []);
-
-
-  //implementation of searchbar
-  const [filteredList, setFilteredList] = useState(books);
-
-  const filterBySearch = (event) => {
-    // Access input value
-    const query = event.target.value;
-    
-    if(query !==''){
-        const results = books.filter((book)=>{
-            return book.book_title.toLowerCase().startsWith(query.toLowerCase())
-        });
-        setFilteredList(results);
-    }
-    else{
-        setFilteredList(books);
-    }
-
-    // Trigger render with updated values
-    //setFilteredList(updatedList);
-  };
-
-
-
-  return (
-    <div>
-      <form className="d-flex justify-content-center my-5">
-        <div class="input-group searchBar">
-          <input
-            class="form-control border-end-0 border rounded-pill"
-            type="search"
-            defaultValue=""
-            onChange={filterBySearch}
-          />
-          <span class="input-group-append">
-            <button
-              class="btn btn-outline-secondary bg-white border-bottom-0 border rounded-pill"
-              type="button"
-            >
-              <i class="bi bi-search"></i>
-            </button>
-          </span>
-        </div>
-      </form>
-      <div className="gap-0 row-gap-3">
-        <Row xs={1} md={columnsPerRow} className="pt-2">
-          {
-            filteredList.map((book, i) => {
-              return (
-                <Col>
-                  <ID
-                    key={i}
-                    physical_price={book.physical_price}
-                    book_title={book.book_title}
-                    book_author={book.book_author}
-                    photo={book.book_img}
-                    book_id={book.book_id}
-                  />
-                </Col>
-              );
-            })
-            //   books.some
-            //   ((book, i) => {
-            //     return (
-            //       <Col>
-            //         <ID
-            //           key={i}
-            //           physical_price={book.physical_price}
-            //           book_title={book.book_title}
-            //           book_author={book.book_author}
-            //           photo={book.book_img}
-            //         />
-            //       </Col>
-            //     );
-            //   })
-          }
-        </Row>
-      </div>
-    </div>
-  );
-}
-
+    //to retrieve books from firestore
+    const [books, setBooks] = useState([]);
+    const fetchBooks = async () => {
+      await getDocs(collection(db, "books")).then((querySnapshot) => {
+        const newData = querySnapshot.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }));
+        setBooks(newData);
+        console.log(books, newData);
+      });
+    };
+   
+    useEffect(() => {
+      fetchBooks();
+      setFilteredList(books);
+    }, []);
+   
+   
+     //implementation of searchbar
+     const [filteredList, setFilteredList] = useState(books);
+   
+     const filterBySearch = (event) => {
+       // Access input value
+       const query = event.target.value;
+       
+       if(query !==''){
+           const results = books.filter((book)=>{
+               return book.book_title.toLowerCase().startsWith(query.toLowerCase())
+           });
+           setFilteredList(results);
+       }
+       else{
+           setFilteredList(books);
+       }
+   
+       // Trigger render with updated values
+       //setFilteredList(updatedList);
+     };
+   
+   
+   
+     return (
+       <div>
+         <form className="d-flex justify-content-center my-5">
+           <div class="input-group searchBar">
+             <input
+               class="form-control border-end-0 border rounded-pill"
+               type="search"
+               defaultValue=""
+               onChange={filterBySearch}
+             />
+             <span class="input-group-append">
+               <button
+                 class="btn btn-outline-secondary bg-white border-bottom-0 border rounded-pill"
+                 type="button"
+               >
+                 <i class="bi bi-search"></i>
+               </button>
+             </span>
+           </div>
+         </form>
+         <div className="gap-0 row-gap-3">
+           <Row xs={1} md={columnsPerRow} className="pt-2">
+             {
+               filteredList.map((book, i) => {
+                 return (
+                   <Col>
+                     <ID
+                       key={i}
+                       physical_price={book.physical_price}
+                       book_title={book.book_title}
+                       book_author={book.book_author}
+                       photo={book.book_img}
+                       book_id={book.book_id}
+                     />
+                   </Col>
+                 );
+               })
+               //   books.some
+               //   ((book, i) => {
+               //     return (
+               //       <Col>
+               //         <ID
+               //           key={i}
+               //           physical_price={book.physical_price}
+               //           book_title={book.book_title}
+               //           book_author={book.book_author}
+               //           photo={book.book_img}
+               //         />
+               //       </Col>
+               //     );
+               //   })
+             }
+           </Row>
+         </div>
+       </div>
+     );
+   }
+   
 export default IdCards;

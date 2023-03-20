@@ -1,11 +1,17 @@
 import "bootstrap/dist/css/bootstrap.css";
-import { React, useState } from "react";
+import { React, useContext, useState } from "react";
+import CartContext from "../Context/Cart/CartContext";
 function ProductQuantity(props) {
   const [counter, setCounter] = useState(0);
 
+  const {increase} = useContext(CartContext);
+
   //increase counter
-  const increase = () => {
+  const increaseC = () => {
     let maxCount = props.quantity;
+    //cartContext increase
+    increase(props.book)
+
     if (counter < maxCount) {
       setCounter((count) => count + 1);
     }
@@ -28,7 +34,7 @@ function ProductQuantity(props) {
           </span>
           <button className="btn">
             {" "}
-            <i class="bi bi-plus" onClick={increase}></i>
+            <i class="bi bi-plus" onClick={increaseC}></i>
           </button>
           <button className="btn">
             {" "}

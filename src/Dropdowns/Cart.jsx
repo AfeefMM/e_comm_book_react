@@ -1,65 +1,76 @@
-import React, { Component } from "react";
+import React, { Component, useContext } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.js";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import CartContext from "../Context/Cart/CartContext";
 
-class Cart extends Component {
+function Cart() {
   //call this in TopBar
   //values to get: item name and price
-  render() {
-    return (
-      <div className="btn-group dropstart">
-        <button
-          className="navbar-toggler dropstart"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNavDarkDropdown"
-          aria-controls="navbarNavDarkDropdown"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarNavDarkDropdown">
-          <ul className="navbar-nav">
-            <li className="nav-item dropdown">
-              <button
-                className="btn navCart dropdown-toggle iconClr"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                <i className="bi bi-basket2-fill"></i>
-              </button>
 
-              <ul className="dropdown-menu cardItem">
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Action
-                    <button className="btn ">
-                      <i
-                        className="bi bi-trash3-fill"
-                        style={{ color: "rgb(255, 3, 3)" }}
-                      ></i>
-                    </button>
-                  </a>
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Another action
-                  </a>
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Something else here
-                  </a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </div>
+  const { cartItems,checkout, clearCart ,removeFromCart, increase, decrease} = useContext(CartContext);
+
+  return (
+    <div className="btn-group dropstart">
+      <button
+        className="navbar-toggler dropstart"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNavDarkDropdown"
+        aria-controls="navbarNavDarkDropdown"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span className="navbar-toggler-icon"></span>
+      </button>
+      <div className="collapse navbar-collapse" id="navbarNavDarkDropdown">
+        <ul className="navbar-nav">
+          <li className="nav-item dropdown">
+            <button
+              className="btn navCart iconClr"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              {cartItems.length >= 0 && (<i className="bi bi-basket2-fill">{cartItems.length}</i>)}
+              
+            </button>
+            {cartItems.length === 0 ? (
+                <h4 style={{}}>Cart is empty</h4>
+              ) : (
+                <ul>
+                  {cartItems.map((product) => (
+                    <p> {product.book_title}</p>
+                  ))}
+                </ul>
+              )}
+            {/* <ul className="dropdown-menu cardItem">
+              <li>
+                <a className="dropdown-item" href="#">
+                  Action
+                  <button className="btn ">
+                    <i
+                      className="bi bi-trash3-fill"
+                      style={{ color: "rgb(255, 3, 3)" }}
+                    ></i>
+                  </button>
+                </a>
+              </li>
+              <li>
+                <a className="dropdown-item" href="#">
+                  Another action
+                </a>
+              </li>
+              <li>
+                <a className="dropdown-item" href="#">
+                  Something else here
+                </a>
+              </li>
+            </ul> */}
+          </li>
+        </ul>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default Cart;

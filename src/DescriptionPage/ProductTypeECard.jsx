@@ -1,13 +1,13 @@
-function ProductTypeCard(props) {
+function ProductTypeECard(props) {
   return (
-    <div className="card m-2" style={{ maxWidth: "150px" ,height:"125px" }}>
+    <div className="card m-2" style={{ maxWidth: "150px",height:"125px" }}>
       <div className="card-body" style={{ fontSize: "16px" }}>
         <span className="card-text" style={{ fontWeight: "400" }}>
-          Physical book price
+          E-book price
         </span>{" "}
         <br />
         <span className="card-text" style={{ fontWeight: "300" }}>
-          ${props.physical_price}
+          ${props.e_book_price}
         </span>{" "}
         <br />
       </div>
@@ -15,4 +15,4 @@ function ProductTypeCard(props) {
   );
 }
 
-export default ProductTypeCard;
+export default ProductTypeECard;
