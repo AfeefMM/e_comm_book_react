@@ -54,7 +54,7 @@ function ProductDescPage(props) {
     // 👇️ take the parameter passed from the Child component
     setprodQuantity(num);
 
-    console.log('quantity Child: ', num);
+    //console.log('quantity Child: ', num);
   };
 
 
@@ -110,7 +110,7 @@ const selectPrice = price =>{
                 <ProductTitle book_title={book.book_title} />
                 <StarRating />
                 <ProductDesc book_desc={book.book_desc} />
-                <ProductQuantity quantity={book.quantity} quantityHandle={quantityHandle}/>
+                Quantity:<ProductQuantity bookId="" quantity={book.quantity} quantityHandle={quantityHandle} defQuant={0}/>
                 <ProdTypeGroup  selectPrice={selectPrice} physical_price={book.physical_price} e_book_price={book.e_book_price}/>
 
                 {/* <ProductTypeCard physical_price={book.physical_price} /> */}
@@ -126,13 +126,13 @@ const selectPrice = price =>{
           </div> */}
 
                 <div className="d-grid gap-2 d-md-flex justify-content-md-start">
-                  <AddCartBtn book_title={book.book_title} selectedPrice={selectedPrice} prodQuantity={prodQuantity} />
+                  <AddCartBtn book_title={book.book_title} selectedPrice={selectedPrice} prodQuantity={prodQuantity} bookImg={book.book_img}/>
                 </div>
               </div>
               <div className="col-10 col-sm-8 col-lg-6">
                 <img
                   //src="https://images.unsplash.com/photo-1629992101753-56d196c8aabb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=990&q=80"
-                  src={book.image}
+                  src={book.book_img}
                   className="d-block mx-lg-auto img-fluid"
                   alt="Bootstrap Themes"
                   loading="lazy"

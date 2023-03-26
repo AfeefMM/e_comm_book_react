@@ -36,7 +36,8 @@ function AddCartBtn(props){
         id:props.book_title,
         name: props.book_title,
         price: props.selectedPrice,
-        prodQuantity: props.prodQuantity
+        prodQuantity: props.prodQuantity,
+        imageUrl:props.bookImg
       };
     return(
         <div>

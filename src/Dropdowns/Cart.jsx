@@ -43,8 +43,8 @@ function Cart() {
                 console.log(book);
                 return(
                   <div>
-                    {/* <CartDropDown title={book.name} quantity={book.prodQuantity}/> */}
-                    <a class="dropdown-item">{book.name}  {book.quantity}</a>
+                    <CartDropDown title={book.name} quantity={book.quantity}/>
+                    {/* <a class="dropdown-item">{book.name}  {book.quantity}</a> */}
                   </div>
                 );
               })
