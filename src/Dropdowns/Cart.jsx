@@ -3,6 +3,8 @@ import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.js";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { useCart } from "react-use-cart";
+import Offcanvas from 'react-bootstrap/Offcanvas';
+import CartDropDown from "./CartDropdown";
 
 function Cart() {
   //call this in TopBar
@@ -14,68 +16,70 @@ function Cart() {
 
   const getItems = () => {
     setbookItems(items);
-    console.log(bookItems);
+    
   };
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   useEffect(() => {
     getItems();
   }, []);
 
   return (
-    <div class="dropdown">
-  <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-  <i className="bi bi-basket2-fill"></i>
-  </button>
-  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-  {
+    <>
+      <button onClick={handleShow} className="btn" style={{color:'rgb(228, 220, 207)'}} type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+<i className="bi bi-basket2-fill"></i>
+</button>
+
+<Offcanvas show={show} onHide={handleClose} placement='end'>
+        <Offcanvas.Header closeButton>
+          <Offcanvas.Title>Book Cart</Offcanvas.Title>
+        </Offcanvas.Header>
+        <Offcanvas.Body>
+        {
               items.map((book,i)=>{
+                console.log(book);
                 return(
                   <div>
-                    {book.id}
+                    {/* <CartDropDown title={book.name} quantity={book.prodQuantity}/> */}
+                    <a class="dropdown-item">{book.name}  {book.quantity}</a>
                   </div>
                 );
               })
             }
-  </div>
-</div>
-    // <div className="btn-group dropstart">
-    //   <button
-    //     className="navbar-toggler dropstart"
-    //     type="button"
-    //     data-bs-toggle="collapse"
-    //     data-bs-target="#navbarNavDarkDropdown"
-    //     aria-controls="navbarNavDarkDropdown"
-    //     aria-expanded="false"
-    //     aria-label="Toggle navigation"
-    //   >
-    //     <span className="navbar-toggler-icon"></span>
-    //   </button>
-    //   <div className="collapse navbar-collapse dropdown" id="navbarNavDarkDropdown">
-    //         <button
-    //           className="btn navCart iconClr dropdown-toggle"
-    //           data-bs-toggle="dropdown"
-    //           aria-expanded="false"
-    //           id="dropdownMenuButton"
-    //         >
-    //           <i className="bi bi-basket2-fill"></i>
-    //         </button>
-    //         {
-    //           items.map((book,i)=>{
-    //             return(
-    //               <div>
-    //                 {book.id}
-    //               </div>
-    //             );
-    //           })
-    //         }
-            
+        </Offcanvas.Body>
+      </Offcanvas>
+    </>
+//     <div class="dropdown btn-group">
+//   <button style={{color:'rgb(228, 220, 207)'}} class="btn dropdown-toggle dropleft" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+//   <i className="bi bi-basket2-fill"></i>
+//   </button>
+//     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    
+//   {
+//               items.map((book,i)=>{
+//                 console.log(book);
+//                 return(
+//                   <div>
+//                     {/* <CartDropDown title={book.name} quantity={book.prodQuantity}/> */}
+//                     <a class="dropdown-item">{book.name}  {book.quantity}</a>
+//                   </div>
+//                 );
+//               })
+//             }
 
-    //   </div>
-    // </div>
+//   </div>
+// </div>
+
   );
 }
 
 export default Cart;
+
+
+
 
 /* 
 

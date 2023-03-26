@@ -9,9 +9,15 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "./firebase";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useCart } from "react-use-cart";
+
+
 
 
 function ProductDescPage(props) {
+  const { emptyCart } = useCart();
+
+ // emptyCart();
   //const [id]  = useSearchParams();
   const { bookId } = useParams();
 
@@ -46,7 +52,7 @@ function ProductDescPage(props) {
   const [prodQuantity, setprodQuantity] = useState(1);
   const quantityHandle = num => {
     // 👇️ take the parameter passed from the Child component
-    setprodQuantity(current => current + num);
+    setprodQuantity(num);
 
     console.log('quantity Child: ', num);
   };
